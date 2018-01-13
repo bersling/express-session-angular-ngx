@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bersling/sessions.git"
+    "url": "git+https://github.com/bersling/express-session-angular-ngx.git"
   },
   "keywords": [
     "Express",
@@ -19,9 +19,9 @@
   "author": "Daniel Niederberger",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bersling/sessions/issues"
+    "url": "https://github.com/bersling/express-session-angular-ngx/issues"
   },
-  "homepage": "https://github.com/bersling/sessions#readme",
+  "homepage": "https://github.com/bersling/express-session-angular-ngx#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
