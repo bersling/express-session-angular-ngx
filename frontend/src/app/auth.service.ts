@@ -34,7 +34,6 @@ export class AuthService {
     })
   }
 
-
   logout() {
     this.http.post(environment.apiUrl + '/logout', {}, {
       withCredentials: true

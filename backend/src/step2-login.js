@@ -100,61 +100,6 @@ app.get('/api/login', (req, res) => {
   req.session.user ? res.status(200).send({loggedIn: true}) : res.status(200).send({loggedIn: false});
 });
 
-/**
- * Log the user out of the application.
- */
-app.post('/api/logout', (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      res.status(500).send('Could not log out.');
-    } else {
-      res.status(200).send({});
-    }
-  });
-});
-
-/**
- * Checks if user is logged in, by checking if user is stored in session.
- */
-const authMiddleware = (req, res, next) => {
-  if(req.session && req.session.user) {
-    next();
-  } else {
-    res.status(403).send({
-      errorMessage: 'You must be logged in.'
-    });
-  }
-};
-
-
-/**
- * Some hardcoded values of accout balances of users and method to fetch the balance.
- */
-const accountBalances = {
-  'max@gmail.com': 53762,
-  'lily@gmail.com': 4826
-};
-const getBalance = (email) => {
-  return accountBalances[email];
-};
-
-/**
- * Endpoint to get users' account balance. Uses AuthMiddleware, such that only authenticated users can fetch balance.
- */
-app.get('/api/balance', authMiddleware, (req, res) => {
-  const user = req.session.user;
-  const balance = getBalance(user.email);
-  if (balance) {
-    res.status(200).send({
-      balance: balance
-    })
-  } else {
-    res.status(403).send({
-      errorMessage: 'Access Denied.'
-    });
-  }
-});
-
 
 /**
  * Listen on port 3000
