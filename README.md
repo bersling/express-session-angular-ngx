@@ -15,6 +15,8 @@ then you can start the backend with
 npm start
 ```
 
+The backend is launched at http://localhost:3000.
+
 ## Installing the frontend (angular)
 
 ```
@@ -26,6 +28,8 @@ then you can start the frontend with
 ```
 npm start
 ```
+
+The frontend is launched at http://localhost:4736/. The frontend requires the backend to run.
 
 ## Tutorial
 
