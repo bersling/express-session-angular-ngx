@@ -25,7 +25,7 @@ export class AppComponent {
   }
 
   doLogin() {
-    this.authService.login(this.email, this.password);
+    this.authService.doLogin(this.email, this.password);
   }
 
   doLogout() {

@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon"
+    "start": "nodemon",
+    "kill": "lsof -t -i tcp:3000 | xargs kill"
   },
   "repository": {
     "type": "git",

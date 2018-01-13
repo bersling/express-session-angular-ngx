@@ -1,4 +1,5 @@
-<div *ngIf="!loggedIn" class="logged-out">
+<div *ngIf="loggedIn === undefined">Loading...</div>
+<div *ngIf="loggedIn === false" class="logged-out">
   <input type="text" placeholder="Email" [(ngModel)]="email"><br><br>
   <input type="text" placeholder="Password" [(ngModel)]="password"><br><br>
   <button (click)="doLogin()">Login</button>

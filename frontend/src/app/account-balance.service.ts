@@ -15,9 +15,7 @@ export class AccountBalanceService {
   accountBalance: Subject<Balance | null>;
 
   getAccountBalance() {
-    const req = this.http.get(environment.apiUrl + '/balance', {
-      headers: this.authService.buildHeaders()
-    });
+    const req = this.http.get(environment.apiUrl + '/balance');
     req.subscribe((balance: Balance) => {
       this.accountBalance.next(balance);
     }, errorResp => {

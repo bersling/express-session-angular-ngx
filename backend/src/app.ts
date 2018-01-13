@@ -4,10 +4,15 @@ const cors = require('cors');
 import * as bodyParser from 'body-parser';
 
 const app = express();
-app.use(cors());
+app.use(cors({origin: [
+  "http://localhost:4736",
+  /\.tsmean\.com$/
+], credentials: true}));
 app.use(bodyParser.json());
 
-app.use(session({secret: "Shh, its a secret!"}));
+app.use(session({
+  secret: "Shh, its a secret!"
+}));
 
 const appUsers = {
   'max@gmail.com': {
@@ -32,8 +37,21 @@ const validatePayloadMiddleware = (req, res, next) => {
   }
 };
 
-app.post('/api/login', validatePayloadMiddleware, (req, res) => {
+app.get('/api/login', (req, res) => {
+  req.session.user ? res.status(200).send({loggedIn: true}) : res.status(200).send({loggedIn: false});
+});
 
+app.post('/api/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      res.status(500).send('Could not log out.');
+    } else {
+      res.status(200).send({});
+    }
+  });
+});
+
+app.post('/api/login', validatePayloadMiddleware, (req, res) => {
   const user = appUsers[req.body.email];
   if (user && user.pw === req.body.password) {
     const userWithoutPassword = {...user};
@@ -47,8 +65,21 @@ app.post('/api/login', validatePayloadMiddleware, (req, res) => {
       errorMessage: 'Permission denied!'
     });
   }
-
 });
+
+/* Unused
+app.get('/api/user', (req, res) => {
+  if (req.session.user) {
+    const userWithoutPassword = req.session.user;
+    res.status(200).send({
+      user: userWithoutPassword
+    });
+  } else {
+    res.status(403).send({
+      errorMessage: 'Permission denied!'
+    });
+  }
+});*/
 
 app.get('/api', function(req, res){
   if(req.session.page_views){
@@ -59,4 +90,5 @@ app.get('/api', function(req, res){
     res.send("Welcome to this page for the first time!");
   }
 });
+
 app.listen(3000);
