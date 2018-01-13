@@ -33,6 +33,11 @@ The frontend is launched at http://localhost:4736/. The frontend requires the ba
 
 ## Tutorial
 
+Here's a written version of a tutorial. There's also a tutorial available on youtube at <coming soon>.
+
+
+### Introduction
+
 Sessions help you to identify returning users, so they don't have their login-credentials (username, password) on every request. Express actually makes this so simple, I first even didn't understand how it could work. Take this example (courtesy to tutorialspoint):
 
 ```
@@ -105,4 +110,3 @@ To get it to work with Angular, there are a few things you'll need to consider.
 - By default, express-session uses ApplicationMemory for session cache. This isn't suited for production. For more info, see https://github.com/expressjs/session.
 - This tutorial doesn't use the secure flag of express-session, for production you should use it. It means https is necessary.
 - There's also a tutorial for JWT with Express and Angular, see https://github.com/bersling/jwt-express-angular. However, I prefer classic express-session, see for example https://scotch.io/bar-talk/why-jwts-suck-as-session-tokens or http://cryto.net/~joepie91/blog/2016/06/13/stop-using-jwt-for-sessions/
-
