@@ -26,11 +26,12 @@ export class AuthService {
 
   getLogin() {
     this.http.get(environment.apiUrl + '/login', {
-      withCredentials: true
+      withCredentials: true // <=========== important!
     }).subscribe((resp: any) => {
-      console.log(resp.loggedIn);
       this.loggedIn.next(resp.loggedIn);
-    }, (errorResp) => this.toastr.error('Oops, something went wrong getting the logged in status'))
+    }, (errorResp) => {
+      this.toastr.error('Oops, something went wrong getting the logged in status')
+    })
   }
 
 

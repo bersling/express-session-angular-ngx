@@ -5,8 +5,7 @@ import * as bodyParser from 'body-parser';
 
 const app = express();
 app.use(cors({origin: [
-  "http://localhost:4736",
-  /\.tsmean\.com$/
+  "http://localhost:4736"
 ], credentials: true}));
 app.use(bodyParser.json());
 
@@ -98,20 +97,6 @@ app.get('/api/balance', authMiddleware, (req, res) => {
     });
   }
 });
-
-/* Unused
-app.get('/api/user', (req, res) => {
-  if (req.session.user) {
-    const userWithoutPassword = req.session.user;
-    res.status(200).send({
-      user: userWithoutPassword
-    });
-  } else {
-    res.status(403).send({
-      errorMessage: 'Permission denied!'
-    });
-  }
-});*/
 
 app.get('/api', function(req, res){
   if(req.session.page_views){
