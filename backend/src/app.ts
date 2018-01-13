@@ -9,6 +9,47 @@ app.use(bodyParser.json());
 
 app.use(session({secret: "Shh, its a secret!"}));
 
+const appUsers = {
+  'max@gmail.com': {
+    email: 'max@gmail.com',
+    name: 'Max Miller',
+    pw: '1234' // YOU DO NOT WANT TO STORE PW's LIKE THIS IN REAL LIFE - HASH THEM FOR STORAGE
+  },
+  'lily@gmail.com': {
+    email: 'lily@gmail.com',
+    name: 'Lily Walter',
+    pw: '1235' // YOU DO NOT WANT TO STORE PW's LIKE THIS IN REAL LIFE - HASH THEM FOR STORAGE
+  }
+};
+
+const validatePayloadMiddleware = (req, res, next) => {
+  if (req.body) {
+    next();
+  } else {
+    res.status(403).send({
+      errorMessage: 'You need a payload'
+    });
+  }
+};
+
+app.post('/api/login', validatePayloadMiddleware, (req, res) => {
+
+  const user = appUsers[req.body.email];
+  if (user && user.pw === req.body.password) {
+    const userWithoutPassword = {...user};
+    delete userWithoutPassword.pw;
+    req.session.user = userWithoutPassword;
+    res.status(200).send({
+      user: userWithoutPassword
+    });
+  } else {
+    res.status(403).send({
+      errorMessage: 'Permission denied!'
+    });
+  }
+
+});
+
 app.get('/api', function(req, res){
   if(req.session.page_views){
     req.session.page_views++;
