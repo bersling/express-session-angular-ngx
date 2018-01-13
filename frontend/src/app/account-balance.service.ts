@@ -15,11 +15,17 @@ export class AccountBalanceService {
   accountBalance: Subject<Balance | null>;
 
   getAccountBalance() {
-    const req = this.http.get(environment.apiUrl + '/balance');
+    const req = this.http.get(environment.apiUrl + '/balance', {
+      withCredentials: true
+    });
     req.subscribe((balance: Balance) => {
       this.accountBalance.next(balance);
     }, errorResp => {
-      this.toastr.error('Oops, something went wrong.');
+      if (errorResp.status === 403) {
+        // TODO: redirect to login
+      }
+      this.toastr.error(errorResp.error && errorResp.error.errorMessage ?
+        errorResp.error.errorMessage :  'Oops, something went wrong.');
     });
   }
 

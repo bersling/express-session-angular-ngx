@@ -26,6 +26,13 @@ const appUsers = {
     pw: '1235' // YOU DO NOT WANT TO STORE PW's LIKE THIS IN REAL LIFE - HASH THEM FOR STORAGE
   }
 };
+const accountBalances = {
+  'max@gmail.com': 53762,
+  'lily@gmail.com': 4826
+};
+const getBalance = (email: string) => {
+  return accountBalances[email];
+};
 
 const validatePayloadMiddleware = (req, res, next) => {
   if (req.body) {
@@ -63,6 +70,31 @@ app.post('/api/login', validatePayloadMiddleware, (req, res) => {
   } else {
     res.status(403).send({
       errorMessage: 'Permission denied!'
+    });
+  }
+});
+
+const authMiddleware = (req, res, next) => {
+  console.log(req.session.user);
+  if(req.session && req.session.user) {
+    next();
+  } else {
+    res.status(403).send({
+      errorMessage: 'You must be logged in.'
+    });
+  }
+};
+
+app.get('/api/balance', authMiddleware, (req, res) => {
+  const user = req.session.user;
+  const balance = getBalance(user.email);
+  if (balance) {
+    res.status(200).send({
+      balance: balance
+    })
+  } else {
+    res.status(403).send({
+      errorMessage: 'Access Denied.'
     });
   }
 });

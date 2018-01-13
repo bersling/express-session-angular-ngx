@@ -19,7 +19,7 @@ export class AuthService {
       this.loggedIn.next(true);
       this.toastr.success(resp && resp.user && resp.user.name ? `Welcome ${resp.user.name}` : 'Logged in!');
     }, (errorResp) => {
-      this.loggedIn.next(undefined);
+      this.loggedIn.next(false);
       errorResp.error ? this.toastr.error(errorResp.error.errorMessage) : this.toastr.error('An unknown error has occured.');
     });
   }
@@ -28,9 +28,9 @@ export class AuthService {
     this.http.get(environment.apiUrl + '/login', {
       withCredentials: true
     }).subscribe((resp: any) => {
-      console.log('logged in is:', resp);
+      console.log(resp.loggedIn);
       this.loggedIn.next(resp.loggedIn);
-    }, (errorResp) => this.toastr.error('Oops, something went wrong gettin the logged in status'))
+    }, (errorResp) => this.toastr.error('Oops, something went wrong getting the logged in status'))
   }
 
 
