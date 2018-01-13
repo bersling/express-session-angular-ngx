@@ -1,0 +1,21 @@
+<div *ngIf="!loggedIn" class="logged-out">
+  <input type="text" placeholder="Email" [(ngModel)]="email"><br><br>
+  <input type="text" placeholder="Password" [(ngModel)]="password"><br><br>
+  <button (click)="doLogin()">Login</button>
+</div>
+<div *ngIf="loggedIn" class="logged-in">
+  You are logged in.
+  
+  <div class="account-balance-wrapper">
+    <div *ngIf="accountBalance">
+      Your balance is: {{accountBalance?.balance}}$
+    </div>
+    <br>
+    <div>
+      <button (click)="getBalance()">Get Account Balance</button>
+    </div>
+  </div>
+  
+  <button (click)="doLogout()">Log Out</button>
+  
+</div>
