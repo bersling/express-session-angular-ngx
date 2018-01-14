@@ -35,7 +35,7 @@ The frontend is launched at http://localhost:4736/. The frontend requires the ba
 
 ## Tutorial
 
-Here's a written version of a tutorial. There's also a tutorial available on youtube at <coming soon>.
+Here's a written version of a tutorial. There's also a tutorial available on youtube at https://youtu.be/QgqO-3FAvds.
 
 
 ### Introduction
