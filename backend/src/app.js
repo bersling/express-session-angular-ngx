@@ -128,7 +128,7 @@ const authMiddleware = (req, res, next) => {
 
 
 /**
- * Some hardcoded values of accout balances of users and method to fetch the balance.
+ * Some hardcoded values of account balances of users and method to fetch the balance.
  */
 const accountBalances = {
   'max@gmail.com': 53762,
