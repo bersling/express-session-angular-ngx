@@ -112,3 +112,4 @@ To get it to work with Angular, there are a few things you'll need to consider.
 - By default, express-session uses ApplicationMemory for session cache. This isn't suited for production. For more info, see https://github.com/expressjs/session.
 - This tutorial doesn't use the secure flag of express-session, for production you should use it. It means https is necessary.
 - There's also a tutorial for JWT with Express and Angular, see https://github.com/bersling/jwt-express-angular. However, I prefer classic express-session, see for example https://scotch.io/bar-talk/why-jwts-suck-as-session-tokens or http://cryto.net/~joepie91/blog/2016/06/13/stop-using-jwt-for-sessions/
+- You'll find more info at https://www.tsmean.com/articles/authentication/express-session-angular/
