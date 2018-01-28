@@ -1,6 +1,6 @@
 # Sessions with Express and Angular 2,4,5,6 (ngx)
 
-Creating sessions with express is easy. However, there are one or to pitfalls
+Creating sessions with express is easy. However, there are one or two pitfalls
 to be aware of when using together with Angular. Here's a working example repo.
 
 You can see how the backend was built step by step, since for each step there's a working .js file. Below the installation instructions, you'll find a short tutorial and a link to a youtube tutorial belonging to this repository.
